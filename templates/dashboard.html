@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendWise Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">💰 SpendWise</div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/add-expense">Add Expense</a>
+            <a href="/logout">Logout</a>
+
+            <button id="darkModeBtn" class="btn">
+              🌙 Dark Mode
+            </button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+
+        <h1>👋 Welcome, {{ username }}</h1>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+
+            <div class="stat-card income">
+                <h3>Total Income</h3>
+                <h1>₹{{ total_income }}</h1>
+            </div>
+
+            <div class="stat-card expense">
+                <h3>Total Expense</h3>
+                <h1>₹{{ total_expense }}</h1>
+            </div>
+
+            <div class="stat-card balance">
+                <h3>Balance</h3>
+                <h1>₹{{ balance }}</h1>
+            </div>
+
+        </div>
+
+        {% if alert_message %}
+        <div class="budget-alert">
+            {{ alert_message }}
+        </div>
+        {% endif %}
+               
+       {% if top_category %}
+       <div class="top-category-card">
+
+          <h2>🏆 Top Spending Category</h2>
+
+          <h1>{{ top_category[0] }}</h1>
+
+          <p>₹{{ top_category[1] }}</p>
+
+       </div>
+       {% endif %}
+
+          
+
+       <div class="recent-card">
+
+        <h2>🕒 Recent Transactions</h2>
+
+        <table class="expense-table">
+
+           <tr>
+             <th>Amount</th>
+             <th>Category</th>
+             <th>Date</th>
+           </tr>
+
+              {% for expense in recent_expenses %}
+
+             <tr> 
+                 <td>₹{{ expense[2] }}</td>
+                 <td>{{ expense[3] }}</td>
+                 <td>{{ expense[4] }}</td>
+             </tr>
+
+           {% endfor %}
+
+           </table>
+
+        </div>
+        
+        
+     <div class="recent-card">
+
+           <h2>💵 Recent Income</h2>
+
+       <table class="expense-table">
+
+         <tr>
+             <th>Amount</th>
+             <th>Source</th>
+             <th>Date</th>
+             <th>Action</th>
+         </tr>
+
+        {% for income in recent_incomes %}
+
+         <tr>
+             <td>₹{{ income[1] }}</td>
+             <td>{{ income[2] }}</td>
+             <td>{{ income[3] }}</td>
+
+             <td>
+
+                <a href="/delete-income/{{ income[0] }}"
+                   onclick="return confirm('Delete Income?')">
+
+                    <button class="delete-btn">
+                        Delete
+                    </button>
+
+                </a>
+
+             </td>
+
+         </tr>
+
+         {% endfor %}
+
+       </table>
+      
+       <div class="progress-bar">
+
+    <div class="progress-fill"
+         data-progress="{{ progress }}">
+    </div>
+
+</div>
+
+        <!-- Action Buttons -->
+        <div style="margin:20px 0;">
+
+            <a href="/add-income">
+                <button class="btn-income">
+                    💵 Add Income
+                </button>
+            </a>
+             
+
+            <a href="/set-goal">
+               <button class="btn">
+                   Set Goal
+               </button>
+            </a> 
+
+            <a href="/set-budget">
+              <button class="btn">
+                    🎯 Set Budget
+              </button>
+            </a>
+
+            <a href="/add-expense">
+                <button class="btn">
+                    💸 Add Expense
+                </button>
+            </a>
+
+            <a href="/export-csv">
+               <button class="btn">
+                  📥 Download CSV
+               </button>
+           </a>
+
+        </div>
+
+        <!-- Search -->
+        <form method="GET"
+              action="/dashboard"
+              class="search-bar">
+
+            <input type="text"
+                   name="search"
+                   placeholder="🔍 Search Category or Description">
+
+            <button class="btn" type="submit">
+                Search
+            </button>
+
+        </form>
+        <form method="GET" action="/dashboard">
+
+                 <select name="category">
+
+                 <option value="">All Categories</option>
+
+                 <option value="Food">Food</option>
+
+                 <option value="Travel">Travel</option>
+
+                 <option value="Shopping">Shopping</option>
+
+                 <option value="Bills">Bills</option>
+
+                 <option value="Entertainment">Entertainment</option>
+
+               </select>
+
+               <button class="btn" type="submit">
+                    Filter
+               </button>
+
+       </form>
+
+        <br>
+
+        <form method="GET" action="/dashboard">
+
+        <select name="period">
+
+           <option value="">All Time</option>
+           <option value="this_month">This Month</option>
+           <option value="last_month">Last Month</option>
+
+       </select>
+
+       <button class="btn" type="submit">
+           📅 Filter Date
+       </button>
+
+     </form>
+        <!-- Chart -->
+        <div class="chart-card">
+
+            <h2>📊 Expense Analytics</h2>
+
+            <img src="{{ url_for('static', filename='chart.png') }}"
+                 width="400">
+
+        </div>
+        
+        <div class="chart-card">
+
+           <h2>📈 Income vs Expense</h2>
+
+           <img src="{{ url_for('static', filename='income_expense.png') }}"
+                width="500">
+ 
+       </div>
+        <div class="chart-card">
+
+        <h2>📈 Monthly Expense Trend</h2>
+
+        <img
+            src="{{ url_for('static', filename='monthly_chart.png') }}"
+            width="600"
+        >
+
+    </div>
+        <!-- Expense Table -->
+
+        <h2 style="margin-top:30px;">Expense History</h2>
+
+        <table class="expense-table">
+
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+
+            {% for expense in expenses %}
+
+            <tr>
+
+                    <td>{{ expense[0] }}</td>
+                    <td>₹{{ expense[2] }}</td>
+                    <td>{{ expense[3] }}</td>
+                    <td>{{ expense[4] }}</td>
+                    <td>{{ expense[5] }}</td>
+
+                <td>
+
+                    <a href="/edit-expense/{{ expense[0] }}">
+                        <button class="edit-btn">
+                            Edit
+                        </button>
+                    </a>
+
+                    <a href="/delete-expense/{{ expense[0] }}"
+                       onclick="return confirm('Delete this expense?')">
+
+                        <button class="delete-btn">
+                            Delete
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+    <script>
+
+const darkBtn = document.getElementById("darkModeBtn");
+
+darkBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+        localStorage.setItem("theme","dark");
+    }
+    else{
+        localStorage.setItem("theme","light");
+    }
+
+});
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark-mode");
+}
+
+</script>
+
+<script>
+
+const progressBar = document.querySelector(".progress-fill");
+
+if(progressBar){
+    let progress = progressBar.dataset.progress;
+    progressBar.style.width = progress + "%";
+}
+
+</script>
+
+</body>
+
+</html>

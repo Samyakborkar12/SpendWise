@@ -1,0 +1,497 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#0f172a;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 80px;
+    background:white;
+    box-shadow:0 2px 15px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    color:#2563eb;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#334155;
+    margin-left:25px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:700px;
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.btn-income{
+    background:linear-gradient(135deg,#10b981,#059669);
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 4px 12px rgba(16,185,129,0.25);
+}
+
+.btn-income:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(16,185,129,0.35);
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-container{
+    width:420px;
+    margin:80px auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.form-container h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:#2563eb;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-container{
+    width:90%;
+    max-width:1200px;
+    margin:35px auto;
+}
+
+.dashboard-container h1{
+    margin-bottom:25px;
+}
+
+/* =========================
+   STATS CARDS
+========================= */
+
+.stats-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.stat-card{
+    flex:1;
+    min-width:250px;
+    padding:25px;
+    border-radius:18px;
+    color:white;
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+}
+
+.income{
+    background:linear-gradient(135deg,#10b981,#059669);
+}
+
+.expense{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.balance{
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.stat-card h3{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.stat-card h1{
+    font-size:34px;
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
+
+.search-bar{
+    display:flex;
+    gap:12px;
+    margin:25px 0;
+}
+
+.search-bar input{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    font-size:15px;
+}
+
+/* =========================
+   CHART CARD
+========================= */
+
+.chart-card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    margin-top:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.chart-card img{
+    max-width:100%;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.expense-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.expense-table th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+.expense-table td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.expense-table tr:hover{
+    background:#f8fafc;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.edit-btn{
+    background:#f59e0b;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+.edit-btn:hover{
+    background:#d97706;
+}
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.delete-btn:hover{
+    background:#dc2626;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    nav{
+        padding:15px 20px;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .stats-container{
+        flex-direction:column;
+    }
+
+    .search-bar{
+        flex-direction:column;
+    }
+
+    .form-container{
+        width:90%;
+    }
+}
+
+.budget-alert{
+    background:#fef3c7;
+    color:#92400e;
+    padding:15px;
+    border-radius:12px;
+    margin:20px 0;
+    font-weight:bold;
+    text-align:center;
+}
+
+.chart-card img{
+    max-width:100%;
+    border-radius:12px;
+}
+
+.top-category-card{
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+    color:white;
+    padding:25px;
+    border-radius:16px;
+    margin:20px 0;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.top-category-card h1{
+    margin:10px 0;
+    font-size:32px;
+}
+
+.recent-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin:25px 0;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* ==========================
+   Mobile Responsive Design
+========================== */
+
+@media (max-width: 768px){
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+        text-align:center;
+    }
+
+    .nav-links{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .nav-links a{
+        margin:8px;
+    }
+
+    .dashboard-container{
+        width:95%;
+    }
+
+    .stats-container{
+        flex-direction:column;
+    }
+
+    .stat-card{
+        min-width:100%;
+    }
+
+    .search-bar{
+        flex-direction:column;
+    }
+
+    .search-bar input{
+        width:100%;
+    }
+
+    .expense-table{
+        display:block;
+        overflow-x:auto;
+    }
+
+    .chart-card img{
+        width:100%;
+        max-width:100%;
+    }
+
+    .btn,
+    .btn-income{
+        width:100%;
+        margin-top:10px;
+    }
+}
+
+/* ==========================
+   DARK MODE
+========================== */
+
+.dark-mode{
+    background:#0f172a;
+    color:white;
+}
+
+.dark-mode nav{
+    background:#1e293b;
+}
+
+.dark-mode .summary-card,
+.dark-mode .chart-card,
+.dark-mode .recent-card,
+.dark-mode .expense-table{
+    background:#1e293b;
+    color:white;
+}
+
+.dark-mode .expense-table td{
+    border-bottom:1px solid #334155;
+}
+
+.dark-mode .expense-table tr:hover{
+    background:#334155;
+}
+
+.dark-mode .search-bar input,
+.dark-mode select,
+.dark-mode textarea,
+.dark-mode input{
+    background:#334155;
+    color:white;
+    border:1px solid #475569;
+}
+
+.dark-mode .nav-links a{
+    color:white;
+}
+
+.dark-mode .logo{
+    color:#60a5fa;
+}
+
+.goal-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin:25px 0;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+
+.progress-bar{
+    width:100%;
+    height:25px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:green;
+    transition:0.5s;
+}
